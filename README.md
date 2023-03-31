@@ -1,0 +1,1 @@
+After learning html,css,javascript,php fundamentals this is me trying to face real life projects applying what've learned in uni and trying to catch modern frameworks like tailwind css 😊
