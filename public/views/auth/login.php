@@ -1,35 +1,53 @@
 <?php
-$is_invalid = false;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // get the form inputs
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    
-    $mysqli = require __DIR__ . '/../database.php';
-    
-    $sql = sprintf("SELECT * FROM student,moderateur
-                    WHERE email = '%s'",
-                   $mysqli->real_escape_string($_POST["email"]));
-    
-    $result = $mysqli->query($sql);
-    $user = $result->fetch_assoc();
-    
-    if ($user) {
-        
-        if (password_verify($_POST["password"], $user["password_hash"])) {
-            
-            session_start();
-            
-            session_regenerate_id();
-            
-            $_SESSION["user_id"] = $user["id"];
-            
-            header("Location: index.html");
-            exit;
-        }
-    }
-    
-    $is_invalid = true;
+  
+// connect to the database
+$servername = "localhost";
+$username = "root";
+$db_password = "";
+$dbname = "isik";
 
-  }
+// create connection
+$conn = mysqli_connect($servername, $username, $db_password, $dbname);
+
+// check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// prepare SQL statement and bind parameters
+$stmt = $conn->prepare("SELECT id, password FROM user WHERE email = ?");
+$stmt->bind_param("s", $email);
+
+// execute the SQL statement and check for errors
+if (!$stmt->execute()) {
+    die("Error: " . $stmt->error);
+}
+
+// retrieve the user's ID and password hash from the database
+$stmt->bind_result($id, $hashed_password);
+$stmt->fetch();
+
+// verify the password hash
+if (password_verify($password, $hashed_password)) {
+    // password is correct, log the user in
+    session_start();
+    $_SESSION['id'] = $id;
+    header("Location: http://localhost/isik/index.php"); // replace with your own URL
+    exit();
+} else {
+    // password is incorrect, show an error message
+    echo "Invalid email or password";
+}
+
+// close the database connection and statement
+$stmt->close();
+$conn->close();
+}
 ?>
 <html lang="en">
 <head>
@@ -163,7 +181,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </svg>
         </div>
         <h3 class="text-2xl font-bold text-center">Login to your account</h3>
-        <form action="login.php" method="post">
+        <form action="" method="post">
             <div class="mt-4">
                 <div>
                     <label class="block" for="email">Email<label>

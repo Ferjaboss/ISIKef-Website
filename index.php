@@ -17,16 +17,53 @@
             <span class="self-center text-xl font-semibold whitespace-nowrap "></span>
         </a>
         <div class="flex items-center">
-            <a href="tel:21678201056" class="mr-6 text-lg font-medium text-gray-500  hover:underline">(216) 78 201 056</a>
-            <a href="public/views/auth/login.php" class="mr-6 text-lg font-medium text-blue-600  hover:underline">Se connecter</a>
-            <a href="public/views/auth/register.php" class="mr-6 text-lg font-medium text-blue-600  hover:underline">S'inscrire</a>
+            <?php 
+                // check if the user is logged in using session id
+                session_start();
+                if(isset($_SESSION['id'])) {
+                    // display user's name and avatar
+                    $servername = "localhost";
+                    $username = "root";
+                    $db_password = "";
+                    $dbname = "isik";
+
+                    // create connection
+                    $conn = mysqli_connect($servername, $username, $db_password, $dbname);
+
+                    // check connection
+                    if (!$conn) {
+                        die("Connection failed: " . mysqli_connect_error());
+                    }
+
+                    $id = $_SESSION['id'];
+
+                    // get user's name and avatar from database
+                    $stmt = $conn->prepare("SELECT nom, prenom, avatar FROM user WHERE id=?");
+                    $stmt->bind_param("i", $id);
+                    $stmt->execute();
+                    $stmt->bind_result($nom, $prenom, $avatar);
+                    $stmt->fetch();
+
+                    echo '<span class="mr-6 text-lg font-medium text-gray-500">' . $nom . ' ' . $prenom . '</span>';
+                    echo '<img src="public/views/auth/avatars/' . $avatar . '" class="h-8 mr-3 sm:h-12 rounded-full" alt="user avatar"/>';
+                    
+                    $stmt->close();
+                    $conn->close();
+                } else {
+                    // display login and register links
+                    echo '<a href="tel:21678201056" class="mr-6 text-lg font-medium text-gray-500  hover:underline">(216) 78 201 056</a>';
+                    echo '<a href="public/views/auth/login.php" class="mr-6 text-lg font-medium text-blue-600  hover:underline">Se connecter</a>';
+                    echo '<a href="public/views/auth/register.php" class="mr-6 text-lg font-medium text-blue-600  hover:underline">S\'inscrire</a>';
+                }
+            ?>
         </div>
     </div>
 </nav>
 
-<nav class="px-2 border-gray-200 sm:px-0 py-8 bg-white">
+
+<nav class="px-2 border-gray-200 sm:px-4 py-8 bg-white">
   <div class="container flex flex-wrap items-center justify-between mx-auto">
-    <a href="/" class="flex items-center">
+    <a href="/isik" class="flex items-center">
         <img src="public/img\logos\isik\banner.png" class=" h-16 mr-3 sm:max-h-20" alt="isi kef logo" />
         <span class="self-center text-xl font-semibold whitespace-nowrap "></span>
     </a>
@@ -124,7 +161,7 @@
           <a href="#" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 ">Actualités et Evénements</a>
         </li>
         <li>
-          <a href="#" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 ">Nous Contacter</a>
+          <a href="./public/views/contact.php" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 ">Nous Contacter</a>
         </li>
       </ul>
     </div>

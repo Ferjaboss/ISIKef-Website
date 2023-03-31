@@ -39,7 +39,7 @@ if(isset($_FILES['avatar']) && $_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
     }
     $avatar = $avatarName;
 } else {
-    $avatarName = "/avatars/default.png";
+    $avatarName = "/default.png";
 }
 if(isset($_FILES['avatar'])) {
     $avatar = $_FILES['avatar']['name'];
