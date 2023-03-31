@@ -10,6 +10,23 @@
 </head>
 <body>
 <!-- Barre de navigation -->
+<header>
+<?php
+if (isset($_GET['message'])) {
+  $message = $_GET['message'];
+  echo '<p id="message">' . $message . '</p>';
+}
+?>
+
+<script>
+  // hide the message after 3 seconds
+  setTimeout(function() {
+    var message = document.getElementById("message");
+    if (message != null) {
+      message.style.display = "none";
+    }
+  }, 3000);
+</script>
 <nav class="bg-white border-gray-200 py-1">
     <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl px-4 md:px-6">
         <a href="http://www.uj.rnu.tn" class="flex items-center">
@@ -43,10 +60,16 @@
                     $stmt->execute();
                     $stmt->bind_result($nom, $prenom, $avatar);
                     $stmt->fetch();
-
                     echo '<span class="mr-6 text-lg font-medium text-gray-500">' . $nom . ' ' . $prenom . '</span>';
-                    echo '<img src="public/views/auth/avatars/' . $avatar . '" class="h-8 mr-3 sm:h-12 rounded-full" alt="user avatar"/>';
-                    
+                    echo'<div class="relative">';
+                    echo '<button class="profile-btn"><img src="public/views/auth/avatars/' . $avatar . '" class="h-8 mr-3 sm:h-12 rounded-full cursor-pointer" alt="user avatar" /></button>';
+                    echo '<div  class="profile-menu absolute hidden bg-white border rounded shadow-md py-2 mt-2 w-48">';
+                    echo '<a href="#" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"><i class="fas fa-user mr-2"></i>Profile</a>';
+                    echo '<a href="#" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"><i class="fas fa-tachometer-alt mr-2"></i>Dashboard</a>';
+                    echo '<a href="#" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"><i class="fas fa-comments mr-2"></i>Forums</a>';
+                    echo '<a href="public/views/auth/logout.php" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"><i class="fas fa-sign-out-alt mr-2"></i>Se deconnecter</a>';
+                    echo '</div>';
+                    echo '</div>';
                     $stmt->close();
                     $conn->close();
                 } else {
@@ -168,7 +191,7 @@
   </div>
 </nav>
 
-
+</header>
 
 
   <div class="flex items-center justify-center min-h-screen bg-gray-200">
@@ -214,6 +237,24 @@
     </div>
   </div>
 </footer>
+<script>
+const profileBtn = document.querySelector('.profile-btn');
+const profileMenu = document.querySelector('.profile-menu');
+
+profileBtn.addEventListener('click', () => {
+  if (profileMenu.classList.contains('hidden')) {
+    profileMenu.classList.remove('hidden');
+  } else {
+    profileMenu.classList.add('hidden');
+  }
+});
+
+document.addEventListener('click', (event) => {
+  if (!profileBtn.contains(event.target) && !profileMenu.contains(event.target)) {
+    profileMenu.classList.add('hidden');
+  }
+});
+</script>
 <script src="public\js\app.js"></script>
 </body>
 </html>

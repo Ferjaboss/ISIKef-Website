@@ -6,6 +6,12 @@ navbarbtn.addEventListener('click', () => {
   target.classList.toggle('hidden');
 });
 
+
+
+
+
+
+
 // Dropdown MENUS fadedouni merci
 const dropdownBtns = document.querySelectorAll('.dropdown-btn');
 const dropdownMenus = document.querySelectorAll('.dropdown-menu');
@@ -56,3 +62,7 @@ document.addEventListener('click', (event) => {
     activeSubdropdown = null;
   }
 });
+
+
+
+
