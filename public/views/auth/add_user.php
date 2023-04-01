@@ -25,9 +25,8 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// upload the avatar file to the server
 if(isset($_FILES['avatar']) && $_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
-    // Get the uploaded file and move it to the avatars folder
+    // retrive the uploaded image and save it to the avatars folder
     $timestamp = time();
     $avatarFile = $_FILES['avatar']['tmp_name'];
     $avatarName = $_FILES['avatar']['name'];

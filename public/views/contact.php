@@ -1,4 +1,5 @@
 <?php
+session_start();
 if (isset($_POST['submit'])) {
     // Get form data
     $nom = $_POST['nom'];
@@ -22,9 +23,11 @@ if (isset($_POST['submit'])) {
         die("Connection failed: " . mysqli_connect_error());
     }
     // Check if user is logged in and get user ID
-    $user_id = null;
     if (isset($_SESSION['id'])) {
         $user_id = $_SESSION['id'];
+    }
+    else {
+        $user_id = NULL;
     }
     
     // Insert form data into database
