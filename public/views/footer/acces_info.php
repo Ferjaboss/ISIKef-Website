@@ -13,7 +13,7 @@
 
 <nav class="px-2 bg-white border-gray-200 sm:px-0 py-8">
   <div class="container flex flex-wrap items-center justify-between mx-auto">
-    <a href="/" class="flex items-center">
+    <a href="../../../index.php" class="flex items-center">
         <img src="../../img\logos\isik\banner.png" class=" h-16 mr-3 sm:max-h-20" alt="isi kef logo" />
         <span class="self-center text-xl font-semibold whitespace-nowrap "></span>
     </a>
@@ -128,7 +128,7 @@
         </div>
         <div class="col-span-3 text-justify">
             <div class="pt-8">       
-              <a href="../../../index.html">Home</a>
+              <a href="../../../index.php">Home</a>
               <i class="fa-light fa-greater-than" style="color: #000000;"></i>
               <a href="">Droit d'accès aux informations</a>
             </div>

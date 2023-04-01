@@ -1,3 +1,44 @@
+<?php
+if (isset($_POST['submit'])) {
+    // Get form data
+    $nom = $_POST['nom'];
+    $prenom = $_POST['prenom'];
+    $email = $_POST['email'];
+    $sujet = $_POST['sujet'];
+    $msg = $_POST['msg'];
+    $datetime = date('Y-m-d H:i:s'); // current date and time
+    
+    // connect to the database
+    $servername = "localhost";
+    $username = "root";
+    $db_password = "";
+    $dbname = "isik";
+
+    // create connection
+    $conn = mysqli_connect($servername, $username, $db_password, $dbname);
+
+    // check connection
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+    // Check if user is logged in and get user ID
+    $user_id = null;
+    if (isset($_SESSION['id'])) {
+        $user_id = $_SESSION['id'];
+    }
+    
+    // Insert form data into database
+    $sql = "INSERT INTO contactus (msgr_nom, msgr_prenom, msgr_email, msgr_sujet, msgr_msg, msgr_datetime, user_id) 
+            VALUES ('$nom', '$prenom', '$email', '$sujet', '$msg', '$datetime', '$user_id')";
+    if (mysqli_query($conn, $sql)) {
+        header("Location: http://localhost/isik?message=Ton message a été envoyé.");
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+    
+    mysqli_close($conn);
+}
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,7 +54,7 @@
 
 <nav class="px-2 bg-white border-gray-200 sm:px-0 py-8">
   <div class="container flex flex-wrap items-center justify-between mx-auto">
-    <a href="/" class="flex items-center">
+    <a href="../../index.php" class="flex items-center">
         <img src="../img\logos\isik\banner.png" class=" h-16 mr-3 sm:max-h-20" alt="isi kef logo" />
         <span class="self-center text-xl font-semibold whitespace-nowrap "></span>
     </a>
@@ -120,38 +161,41 @@
     
 
 
+<main class="bg-gray-200">
 
-
-
-
-    <div class="bg-white grid grid-cols-3">
+  <div class="pt-8  mx-36">       
+    <a href="../../index.php">Home</a>
+    <i class="fa-light fa-greater-than" style="color: #000000;"></i>
+    <a href="">Nous Contacter</a>
+  </div>
+    <div class=" grid grid-cols-3">
               <div class="col-span-2 mx-10 mt-10">
                   <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 ">Nous Contacter</h2>
                   <p class="mb-8 lg:mb-16 font-light text-center text-gray-500  sm:text-xl">Veuillez remplir le formulaire ci-dessous pour nous envoyer un message.</p>
-                  <form action="#" class="space-y-8">
+                  <form action="" method="post" class="space-y-8">
                       <div class="grid grid-cols-2 ">
                          <div class="px-4"> 
                           <label for="name" class="block mb-2 text-sm font-medium text-gray-900 ">Ton nom</label>
-                          <input type="text" id="name" class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 " placeholder="Nom" required>
+                          <input type="text" id="nom" name="nom" class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 " placeholder="Nom" required>
                         </div>
                         <div class="px-4"> 
                           <label for="name" class="block mb-2 text-sm font-medium text-gray-900 ">Ton prenom</label>
-                          <input type="text" id="name" class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 " placeholder="Prénom" required>
+                          <input type="text" id="prenom" name="prenom" class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 " placeholder="Prénom" required>
                         </div>
                       </div>
                       <div>
                           <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Ton email</label>
-                          <input type="email" id="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 " placeholder="email@email.com" required>
+                          <input type="email" id="email" name="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 " placeholder="email@email.com" required>
                       </div>
                       <div>
                           <label for="subject" class="block mb-2 text-sm font-medium text-gray-900 ">Sujet</label>
-                          <input type="text" id="subject" class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 " placeholder="Dites-nous comment nous pouvons vous aider" required>
+                          <input type="text" id="subject" name="sujet" class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 " placeholder="Dites-nous comment nous pouvons vous aider" required>
                       </div>
                       <div class="sm:col-span-2">
                           <label for="message" class="block mb-2 text-sm font-medium text-gray-900 ">Ton message</label>
-                          <textarea id="message" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 " placeholder="Laissez un commentaire..."></textarea>
+                          <textarea id="message" name="msg" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 " placeholder="Laissez un commentaire..."></textarea>
                       </div>
-                      <button type="submit" class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Send message</button>
+                      <button type="submit" name="submit"class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 bg-gray-900">Send message</button>
                   </form>
               </div>
               <div class="">
@@ -177,7 +221,7 @@
             
         </div>
 
-
+</main>
 
 
             <footer class="bg-white">

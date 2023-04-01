@@ -1,52 +1,53 @@
 <?php
+$error = '';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // get the form inputs
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-  
-// connect to the database
-$servername = "localhost";
-$username = "root";
-$db_password = "";
-$dbname = "isik";
+    // connect to the database
+    $servername = "localhost";
+    $username = "root";
+    $db_password = "";
+    $dbname = "isik";
 
-// create connection
-$conn = mysqli_connect($servername, $username, $db_password, $dbname);
+    // create connection
+    $conn = mysqli_connect($servername, $username, $db_password, $dbname);
 
-// check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+    // check connection
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
 
-// prepare SQL statement and bind parameters
-$stmt = $conn->prepare("SELECT id, password FROM user WHERE email = ?");
-$stmt->bind_param("s", $email);
+    // prepare SQL statement and bind parameters
+    $stmt = $conn->prepare("SELECT id, password FROM user WHERE email = ?");
+    $stmt->bind_param("s", $email);
 
-// execute the SQL statement and check for errors
-if (!$stmt->execute()) {
-    die("Error: " . $stmt->error);
-}
+    // execute the SQL statement and check for errors
+    if (!$stmt->execute()) {
+        die("Error: " . $stmt->error);
+    }
 
-// retrieve the user's ID and password hash from the database
-$stmt->bind_result($id, $hashed_password);
-$stmt->fetch();
+    // retrieve the user's ID and password hash from the database
+    $stmt->bind_result($id, $hashed_password);
+    $stmt->fetch();
 
-// verify the password hash
-if (password_verify($password, $hashed_password)) {
-    // password is correct, log the user in
-    session_start();
-    $_SESSION['id'] = $id;
-    header("Location: http://localhost/isik/index.php"); // replace with your own URL
-    exit();
-} else {
-    // password is incorrect, show an error message
-    echo "Invalid email or password";
-}
+    // verify the password hash
+    if (password_verify($password, $hashed_password)) {
+        // password is correct, log the user in
+        session_start();
+        $_SESSION['id'] = $id;
+        header("Location: http://localhost/isik/index.php"); // replace with your own URL
+        exit();
+    } else {
+        // password is incorrect, set error message
+        $error = "Invalid email or password";
+    }
 
-// close the database connection and statement
-$stmt->close();
-$conn->close();
+    // close the database connection and statement
+    $stmt->close();
+    $conn->close();
 }
 ?>
 <html lang="en">
@@ -170,6 +171,9 @@ $conn->close();
   
   <div class="flex items-center justify-center min-h-screen bg-gray-200">
     <div class="px-8 py-6 mt-4 text-left bg-white shadow-lg">
+    <?php if ($error !== ''): ?>
+      <?php echo '<div class="flex justify-center bg-red-600 rounded-lg text-lg text-white">'.$error.'</div>';?>
+    <?php endif; ?>
         <div class="flex justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-20 h-20 text-blue-600" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">

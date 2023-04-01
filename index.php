@@ -14,20 +14,25 @@
 <?php
 if (isset($_GET['message'])) {
   $message = $_GET['message'];
-  echo '<p id="message">' . $message . '</p>';
+  echo'<div id="message" class="flex justify-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-indigo-200 " role="alert">';
+  echo'<svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>';
+  echo'<span class="sr-only">Info</span>';
+  echo'<div>';
+  echo '<span class="font-medium">' . $message . '</span>';
+  echo '  </div></div>';
 }
 ?>
 
 <script>
-  // hide the message after 3 seconds
+  // hide the message after 2sec
   setTimeout(function() {
     var message = document.getElementById("message");
     if (message != null) {
       message.style.display = "none";
     }
-  }, 3000);
+  }, 2000);
 </script>
-<nav class="bg-white border-gray-200 py-1">
+<nav class="bg-white border-gray-200 py-1 ">
     <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl px-4 md:px-6">
         <a href="http://www.uj.rnu.tn" class="flex items-center">
             <img src="public/img/logos/UJ/logo.png" class="h-8 mr-3 sm:h-12" alt="uni jendouba logo" />
@@ -62,8 +67,8 @@ if (isset($_GET['message'])) {
                     $stmt->fetch();
                     echo '<span class="mr-6 text-lg font-medium text-gray-500">' . $nom . ' ' . $prenom . '</span>';
                     echo'<div class="relative">';
-                    echo '<button class="profile-btn"><img src="public/views/auth/avatars/' . $avatar . '" class="h-8 mr-3 sm:h-12 rounded-full cursor-pointer" alt="user avatar" /></button>';
-                    echo '<div  class="profile-menu absolute hidden bg-white border rounded shadow-md py-2 mt-2 w-48">';
+                    echo '<button class="profile-btn"><img src="public/views/auth/avatars/' . $avatar . '" class="h-8 mr-3 sm:h-12 rounded-full cursor-pointer object-cover" alt="user avatar" /></button>';
+                    echo '<div  class="profile-menu absolute hidden bg-white border rounded shadow-md py-2 mt-2 w-48 ">';
                     echo '<a href="#" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"><i class="fas fa-user mr-2"></i>Profile</a>';
                     echo '<a href="#" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"><i class="fas fa-tachometer-alt mr-2"></i>Dashboard</a>';
                     echo '<a href="#" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"><i class="fas fa-comments mr-2"></i>Forums</a>';

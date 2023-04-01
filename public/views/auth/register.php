@@ -147,16 +147,16 @@
                 <div>
                     <label class="block" for="Nom">Nom<label>
                             <input type="text" placeholder="Nom" name="nom"
-                                class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
+                                class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" required>
                 </div>
                 <div>
                     <label class="block" for="Prenom">Prenom<label>
                             <input type="text" placeholder="Prenom" name="prenom"
-                                class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
+                                class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" required>
                 </div>
                 <div>       
                   <label for="user_type" class="block">Vous etes</label>
-                  <select id="user_type" name="user_type" class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" >
+                  <select id="user_type" name="user_type" class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" required>
                     <option value="etd" name="etd">Etudiant(e)</option>
                     <option value="prof" name="mod">Professeur</option>
                     <option value="mod" name="adm">Administrateur/Moderateur</option>
@@ -165,12 +165,12 @@
                 <div class="mt-4">
                     <label class="block" for="email">Email<label>
                             <input type="text" placeholder="Email" name="email"
-                                class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
+                                class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" required>
                 </div>
                 <div class="mt-4">
                     <label class="block">Mot de passe<label>
                             <input type="password" placeholder="Mot de passe" name="password"
-                                class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
+                                class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" required>
                 </div>
                 <div class="mt-4">
                     <label class="block">Avatar<label>
@@ -238,7 +238,7 @@
     </div>
   </div>
 </footer>
-
+<script src="../../js/verify.js"></script>
 <script src="../../js/app.js"></script>
 </body>
 </html>
