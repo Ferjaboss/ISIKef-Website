@@ -67,7 +67,7 @@ if (isset($_GET['message'])) {
                     $stmt->fetch();
                     echo '<span class="mr-6 text-lg font-medium text-gray-500">' . $nom . ' ' . $prenom . '</span>';
                     echo'<div class="relative">';
-                    echo '<button class="profile-btn"><img src="public/views/auth/avatars/' . $avatar . '" class="h-8 mr-3 sm:h-12 rounded-full cursor-pointer object-cover" alt="user avatar" /></button>';
+                    echo '<button class="profile-btn"><img src="public/views/auth/avatars/' . $avatar . '" class="w-12 h-12 rounded-full object-cover mr-4 shadow" alt="user avatar" /></button>';
                     echo '<div  class="profile-menu absolute hidden bg-white border rounded shadow-md py-2 mt-2 w-48 ">';
                     echo '<a href="#" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"><i class="fas fa-user mr-2"></i>Profile</a>';
                     echo '<a href="#" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"><i class="fas fa-tachometer-alt mr-2"></i>Dashboard</a>';

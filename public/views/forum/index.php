@@ -38,12 +38,12 @@
                         $stmt->fetch();
                         echo '<span class="mr-6 text-lg font-medium text-gray-500">' . $nom . ' ' . $prenom . '</span>';
                         echo'<div class="relative">';
-                        echo '<button class="profile-btn"><img src="../../views/auth/avatars/' . $avatar . '" class="h-8 mr-3 sm:h-12 rounded-full cursor-pointer object-cover" alt="user avatar" /></button>';
+                        echo '<button class="profile-btn"><img src="../../views/auth/avatars/' . $avatar . '" class="w-12 h-12 rounded-full object-cover mr-4 shadow" alt="user avatar" /></button>';
                         echo '<div  class="profile-menu absolute hidden bg-white border rounded shadow-md py-2 mt-2 w-48 left-0">';
                         echo '<a href="#" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"><i class="fas fa-user mr-2"></i>Profile</a>';
                         echo '<a href="#" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"><i class="fas fa-tachometer-alt mr-2"></i>Dashboard</a>';
                         echo '<a href="#" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"><i class="fas fa-comments mr-2"></i>Forums</a>';
-                        echo '<a href="../views/auth/logout.php" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"><i class="fas fa-sign-out-alt mr-2"></i>Se deconnecter</a>';
+                        echo '<a href="http://localhost/isik/public/views/auth/logout.php" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"><i class="fas fa-sign-out-alt mr-2"></i>Se deconnecter</a>';
                         echo '</div>';
                         echo '</div>';
                         $stmt->close();
@@ -144,54 +144,7 @@ modalHideButtons.forEach(button => {
 
 
             </div>
-            
-            <!-- <div class="overflow-x-auto relative shadow-md sm:rounded-lg" bis_skin_checked="1">
-                <table class="w-full text-sm text-left text-gray-500 ">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50  ">
-                        <tr>
-                            <th scope="col" class="py-3 px-6">
-                                Name 
-                            </th>
-                            <th scope="col" class="py-3 px-6">
-                                Image
-                            </th>
-                            <th scope="col" class="py-3 px-6">
 
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-        
-                            <tr class="bg-white border-b  ">
-                                <th scope="row"
-                                    class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap ">
-                                  
-                                </th>
-                                <td class="py-4 px-6">
-                                    <img src="" class="w-12 h-12" />
-                                </td>
-                                <td class="flex justify-end py-4 px-6">
-                                    <a href="{{ route('skills.edit', $skill->id) }}"
-                                        class="font-medium text-blue-600  hover:underline mr-3">Edit <i class="fas fa-edit"></i></a>
-                                    <form method="POST" action="{{ route('skills.destroy', $skill->id) }}">
-                                      
-                                        <button type="submit"
-                                            class="font-medium text-red-600  hover:underline mr-3"
-                                            onclick="return confirm('Are you sure??')">Delete <i class="fa fa-trash" aria-hidden="true"></i></button>
-
-                                    </form>
-                                </td>
-                   
-                            <tr>
-                                <td>
-                                    <h2>No Skills</h2>
-                                </td>
-                            </tr>
-          
-
-                    </tbody>
-                </table>
-            </div> -->
         </div>
     </div>
     <?php
@@ -200,21 +153,44 @@ modalHideButtons.forEach(button => {
         die("Connection failed: " . mysqli_connect_error());
     }
 
-    $sql = "SELECT * FROM topic";
+    function getCommentCount($topic_id) {
+        global $servername, $username, $db_password, $dbname;
+
+        $conn = mysqli_connect($servername, $username, $db_password, $dbname);
+        if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+
+        $sql = "SELECT COUNT(*) AS comment_count FROM comment WHERE topic_id = $topic_id";
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($result);
+        return $row['comment_count'];
+    }
+
+    $sql = "SELECT topic.*, user.nom, user.prenom, user.avatar FROM topic LEFT JOIN user ON topic.user_id = user.id ORDER BY created_at DESC";
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
-        echo "<table><tr><th>ID</th><th>Title</th><th>Body</th></tr>";
+        echo '<table class="text-center">';
+        echo '<thead><tr><th>Topic</th><th>User</th><th>Date</th><th>Comments</th></tr></thead>';
+        echo '<tbody>';
+
         while ($row = mysqli_fetch_assoc($result)) {
-            echo "<tr><td>".$row['id']."</td><td>".$row['title']."</td><td>".$row['body']."</td></tr>";
+            echo '<tr>';
+            echo '<td><h1>' . $row['title'] . '</h1>' . $row['body'] . '</td>';
+            echo '<td><img src="../auth/avatars/' . $row['avatar'] . '" alt="Avatar" class="w-12 h-12 rounded-full object-cover mr-4 shadow">' . $row['nom'] . ' ' . $row['prenom'] . '</td>';
+            echo '<td>' . $row['created_at'] . '</td>';
+            echo '<td>' . getCommentCount($row['id']) . '</td>';
+            echo '</tr>';
         }
-        echo "</table>";
-    } else {
-        echo "No results";
+
+        echo '</tbody>';
+        echo '</table>';
     }
 
     mysqli_close($conn);
 ?>
+
 </main>
 
 
