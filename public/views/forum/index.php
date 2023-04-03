@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/output.css">
     <link rel="stylesheet" href="../../fonts/fontawesome-free-6.3.0-web/css/all.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" type="image/x-icon" href="/img/logos/isik/logo.png">
     <title>Institut Supérieur de l'Informatique du Kef</title>
 </head>
@@ -147,6 +148,10 @@ modalHideButtons.forEach(button => {
 
         </div>
     </div>
+
+    <div class="flex justify-center align-middle">
+
+
     <?php
     $conn = mysqli_connect($servername, $username, $db_password, $dbname);
     if (!$conn) {
@@ -169,27 +174,31 @@ modalHideButtons.forEach(button => {
 
     $sql = "SELECT topic.*, user.nom, user.prenom, user.avatar FROM topic LEFT JOIN user ON topic.user_id = user.id ORDER BY created_at DESC";
     $result = mysqli_query($conn, $sql);
-
+    echo '<div class="flex flex-col">';
     if (mysqli_num_rows($result) > 0) {
-        echo '<table class="text-center">';
-        echo '<thead><tr><th>Topic</th><th>User</th><th>Date</th><th>Comments</th></tr></thead>';
-        echo '<tbody>';
-
         while ($row = mysqli_fetch_assoc($result)) {
-            echo '<tr>';
-            echo '<td><h1>' . $row['title'] . '</h1>' . $row['body'] . '</td>';
-            echo '<td><img src="../auth/avatars/' . $row['avatar'] . '" alt="Avatar" class="w-12 h-12 rounded-full object-cover mr-4 shadow">' . $row['nom'] . ' ' . $row['prenom'] . '</td>';
-            echo '<td>' . $row['created_at'] . '</td>';
-            echo '<td>' . getCommentCount($row['id']) . '</td>';
-            echo '</tr>';
+            $databasetime = $row['created_at'];
+            $datetimeFromDB = new DateTime($databasetime);
+            $now = new DateTime();
+            $diff = $now->diff($datetimeFromDB);
+      
+            echo '<div class="flex justify-between items-center rounded-lg p-30 mb-26 border-2 border-gray-500  bg-gray-100 ">';
+            echo '<div class="grid grid-cols-10 max-w-7xl ">';
+            echo '<div class="flex items-center"> <div><img src="../auth/avatars/' . $row['avatar'] . '" alt="Avatar" class="w-12 h-12 rounded-full object-cover mr-4 shadow"></div><div>' . $row['nom'] . ' ' . $row['prenom'] . '</div></div>';
+            echo '<div class="col-span-7"><div class="text-xl font-medium text-gray-900">' . $row['title'] . '</div>' . $row['body'] . '</div>';
+            echo '<div>' .  $diff->format('il y a %h heures %i minutes') . '</div>';
+            echo '<div class="text-center">' . getCommentCount($row['id']) . '</div>';
+            echo '</div>';
+            echo '</div> <br>';
+    
         }
 
-        echo '</tbody>';
-        echo '</table>';
     }
-
+echo '</div>';
     mysqli_close($conn);
 ?>
+    </div>
+
 
 </main>
 
@@ -289,3 +298,4 @@ document.addEventListener('click', (event) => {
 <script src="../../js/verify.js"></script>
 </body>
 </html>
+
