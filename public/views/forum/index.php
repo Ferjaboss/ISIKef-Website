@@ -1,4 +1,3 @@
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/output.css">
     <link rel="stylesheet" href="../../fonts/fontawesome-free-6.3.0-web/css/all.css">
-    <script src="https://cdn.tailwindcss.com"></script>
+   
     <link rel="icon" type="image/x-icon" href="/img/logos/isik/logo.png">
     <title>Institut Supérieur de l'Informatique du Kef</title>
 </head>
@@ -43,7 +42,7 @@
                         echo '<div  class="profile-menu absolute hidden bg-white border rounded shadow-md py-2 mt-2 w-48 left-0">';
                         echo '<a href="#" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"><i class="fas fa-user mr-2"></i>Profile</a>';
                         echo '<a href="#" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"><i class="fas fa-tachometer-alt mr-2"></i>Dashboard</a>';
-                        echo '<a href="#" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"><i class="fas fa-comments mr-2"></i>Forums</a>';
+                        echo '<a href="http://localhost/isik/public/views/forum/" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"><i class="fas fa-comments mr-2"></i>Forums</a>';
                         echo '<a href="http://localhost/isik/public/views/auth/logout.php" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"><i class="fas fa-sign-out-alt mr-2"></i>Se deconnecter</a>';
                         echo '</div>';
                         echo '</div>';
@@ -98,10 +97,7 @@
                     <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Soumettre</button>
 
                 </form>
-                <!-- 
-                    Store the topic in the database
-
-                -->
+            
                 <?php 
                 $conn = mysqli_connect($servername, $username, $db_password, $dbname);
                 if (!$conn) {
@@ -182,14 +178,14 @@ modalHideButtons.forEach(button => {
             $now = new DateTime();
             $diff = $now->diff($datetimeFromDB);
       
-            echo '<div class="flex justify-between items-center rounded-lg p-30 mb-26 border-2 border-gray-500  bg-gray-100 ">';
-            echo '<div class="grid grid-cols-10 max-w-7xl ">';
-            echo '<div class="flex items-center"> <div><img src="../auth/avatars/' . $row['avatar'] . '" alt="Avatar" class="w-12 h-12 rounded-full object-cover mr-4 shadow"></div><div>' . $row['nom'] . ' ' . $row['prenom'] . '</div></div>';
-            echo '<div class="col-span-7"><div class="text-xl font-medium text-gray-900">' . $row['title'] . '</div>' . $row['body'] . '</div>';
-            echo '<div>' .  $diff->format('il y a %h heures %i minutes') . '</div>';
-            echo '<div class="text-center">' . getCommentCount($row['id']) . '</div>';
+            echo '<a href="reply.php?id=' . $row['id'] . '" target="_blank" class="flex justify-between items-center rounded-lg p-30 border-2 border-gray-500  bg-gray-100 ">';
+            echo '<div class="grid grid-cols-10 max-w-7xl h-24">';
+            echo '<div class="ml-2 flex items-center"> <div><img src="../auth/avatars/' . $row['avatar'] . '" alt="Avatar" class="w-12 h-12 rounded-full object-cover mr-4 shadow"></div><div>' . $row['nom'] . ' ' . $row['prenom'] . '</div></div>';
+            echo '<div class="mt-4 col-span-7"><div class="text-xl font-medium text-gray-900">' . $row['title'] . '</div>' . $row['body'] . '</div>';
+            echo '<div class="flex justify-center items-center">' .  $diff->format('il y a %h heures %i minutes') . '</div>';
+            echo '<div class="flex justify-center items-center">' . getCommentCount($row['id']) . '</div>';
             echo '</div>';
-            echo '</div> <br>';
+            echo '</a> <br>';
     
         }
 
