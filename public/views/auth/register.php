@@ -10,112 +10,7 @@
 </head>
 <body>
 <!--Nav Bar-->
-<nav class="px-2 border-gray-200 sm:px-0 py-8 bg-white">
-  <div class="container flex flex-wrap items-center justify-between mx-auto">
-  <a href="../../../index.php" class="flex items-center">
-        <img src="../../img\logos\isik\banner.png" class=" h-16 mr-3 sm:max-h-20" alt="isi kef logo" />
-        <span class="self-center text-xl font-semibold whitespace-nowrap "></span>
-    </a>
-    <button data-collapse-toggle="navbar-multi-level" type="button" class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 " aria-controls="navbar-multi-level" aria-expanded="false">
-      <span class="sr-only">Open main menu</span>
-      <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
-    </button>
-    <div class="hidden w-full md:block md:w-auto" id="navbar-multi-level">
-      <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white ">
-
-        <li>
-          <button  data-dropdown-toggle="dropdownNavbar" class="dropdown-btn flex items-center justify-between w-full py-2 pl-3 pr-4 font-medium text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto ">Notre Institut <svg class="w-5 h-5 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></button>
-          <!-- Dropdown menu 0 -->
-          <div  class="dropdown-menu absolute hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow">
-              <ul class="py-2 text-sm text-gray-700 " aria-labelledby="dropdownLargeButton">
-                <li>
-                  <a href="#" class="block px-4 py-2 hover:bg-gray-100 ">Présentation</a>
-                </li>
-                <li>
-                  <a href="#" class="block px-4 py-2 hover:bg-gray-100 ">Mot du Directeur</a>
-                </li>
-                <li>
-                  <a href="#" class="block px-4 py-2 hover:bg-gray-100 ">Galerie</a>
-                </li>
-              </ul>
-          </div>
-      </li>
-      <li>
-        <button  data-dropdown-toggle="dropdownNavbar" class="dropdown-btn flex items-center justify-between w-full py-2 pl-3 pr-4 font-medium text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto ">Nos formations <svg class="w-5 h-5 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></button>
-        <!-- Dropdown menu 1 -->
-        <div  class="dropdown-menu hidden absolute  font-normal bg-white divide-y divide-gray-100 rounded-lg shadow">
-            <ul class="py-2 text-sm text-gray-700 bottom-7" aria-labelledby="dropdownLargeButton">
-              <li aria-labelledby="dropdownNavbarLink">
-                <button data-dropdown-toggle="doubleDropdown" data-dropdown-placement="right-start" type="button" class="subdropdown-btn flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 ">Licence<svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg></button>
-                <div  class="subdropdown-menu hidden absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 left-full top-0">
-                    <ul class="py-2 text-sm text-gray-700 " aria-labelledby="doubleDropdownButton">
-                      <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 ">LCS</a>
-                      </li>
-                      <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 ">LCE</a>
-                      </li>
-
-                    </ul>
-                </div>
-              </li>
-              <li aria-labelledby="dropdownNavbarLink" >
-                <button  data-dropdown-toggle="doubleDropdown" data-dropdown-placement="right-start" type="button" class=" subdropdown-btn flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100 ">Mastère
-                  <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg></button>
-                  <div class="relative">
-                    <div class="subdropdown-menu hidden absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 ">
-                      <ul class="py-2 text-sm text-gray-700" aria-labelledby="doubleDropdownButton">
-                        <li>
-                          <a href="#" class="block px-4 py-2 hover:bg-gray-100">SIW</a>
-                        </li>
-                        <li>
-                          <a href="#" class="block px-4 py-2 hover:bg-gray-100">ASRI</a>
-                        </li>
-                        <li>
-                          <a href="#" class="block px-4 py-2 hover:bg-gray-100">AWI</a>
-                        </li>
-                        <li>
-                          <a href="#" class="block px-4 py-2 hover:bg-gray-100">NTICDIA</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  
-                  
-              </li>
-            </ul>
-        </div>
-    </li>
-    <li>
-      <button  data-dropdown-toggle="dropdownNavbar" class="dropdown-btn flex items-center justify-between w-full py-2 pl-3 pr-4 font-medium text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto ">La vie de l'Institut <svg class="w-5 h-5 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></button>
-      <!-- Dropdown menu 0 -->
-      <div  class="dropdown-menu absolute hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow">
-          <ul class="py-2 text-sm text-gray-700 " aria-labelledby="dropdownLargeButton">
-            <li>
-              <a href="#" class="block px-4 py-2 hover:bg-gray-100 ">Les Clubs</a>
-            </li>
-            <li>
-              <a href="#" class="block px-4 py-2 hover:bg-gray-100 ">Centre 4C </a>
-            </li>
-            <li>
-              <a href="#" class="block px-4 py-2 hover:bg-gray-100 ">Projet Erasmus+</a>
-            </li>
-            <li>
-              <a href="#" class="block px-4 py-2 hover:bg-gray-100 ">Bibliothèque</a>
-            </li>
-          </ul>
-      </div>
-  </li>
-        <li>
-          <a href="#" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 ">Actualités et Evénements</a>
-        </li>
-        <li>
-          <a href="#" class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 ">Nous Contacter</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<?php include "../component/header.php" ?>
   <div class="flex items-center justify-center min-h-screen bg-gray-200">
     <div class="px-8 py-6 mx-4 my-8 text-left bg-white shadow-lg md:w-1/3 lg:w-1/3 sm:w-1/3">
         <div class="flex justify-center">
@@ -147,30 +42,30 @@
                 <div>
                     <label class="block" for="Nom">Nom<label>
                             <input type="text" placeholder="Nom" name="nom"
-                                class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" required>
+                                class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" >
                 </div>
                 <div>
                     <label class="block" for="Prenom">Prenom<label>
                             <input type="text" placeholder="Prenom" name="prenom"
-                                class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" required>
+                                class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" >
                 </div>
                 <div>       
                   <label for="user_type" class="block">Vous etes</label>
-                  <select id="user_type" name="user_type" class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" required>
+                  <select id="user_type" name="user_type" class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" >
                     <option value="etd" name="etd">Etudiant(e)</option>
-                    <option value="prof" name="mod">Professeur</option>
-                    <option value="mod" name="adm">Administrateur/Moderateur</option>
+                    <option value="prof" name="prof">Professeur</option>
+                    <option value="adm" name="adm">Administrateur/Moderateur</option>
                   </select>
               </div>
                 <div class="mt-4">
                     <label class="block" for="email">Email<label>
                             <input type="text" placeholder="Email" name="email"
-                                class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" required>
+                                class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" >
                 </div>
                 <div class="mt-4">
                     <label class="block">Mot de passe<label>
                             <input type="password" placeholder="Mot de passe" name="password"
-                                class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" required>
+                                class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" >
                 </div>
                 <div class="mt-4">
                     <label class="block">Avatar<label>
@@ -195,49 +90,7 @@
 <script></script>
 <!-- Footer -->
 
-<footer class="bg-white">
-  <div class="mx-auto w-full p-4 sm:p-6 ">
-      <div class="md:flex md:justify-between">
-        <div class="mb-6 md:mb-0">
-                <span class="self-center text-2xl font-semibold whitespace-nowrap text-gray-800">Institut Supérieur d'Informatique du Kef</span>
-                <div >5 Rue Saleh Ayech - 7100 Kef <br>
-                  Tél.: (216) 78 201 056 - Fax : (216) 78 200 237
-                  </div>
-        </div>
-        <div class="grid grid-cols-3 sm:gap-2 sm:grid-cols-6 text-center">
-            <div class="">
-                <a href="" class="mb-4 text-sm font-semibold text-gray-900">Actualités et Evénements</a>
-            </div>
-            <div class="">
-                <a href="" class="mb-4 text-sm font-semibold text-gray-900 ">FAQ</a>
-            </div>
-            <div class="">
-                <a href="" class="mb-4 text-sm font-semibold text-gray-900 ">Liens Utiles</a>
-            </div>
-            <div class="">
-              <a href="" class="mb-4 text-sm font-semibold text-gray-900 ">Media Room</a>
-          </div>
-          <div class="">
-              <a href="" class="mb-4 text-sm font-semibold text-gray-900 ">Sondage</a>
-          </div>
-          <div class="">
-              <a href="" class="mb-4 text-sm font-semibold text-gray-900 ">Nous Contacter</a>
-          </div>
-        </div>
-    </div>
-    <hr class="my-6 border-gray-200 sm:mx-auto  lg:my-8" />
-    <div class="sm:flex sm:items-center sm:justify-between">
-        <span class="text-sm text-gray-500 sm:text-center ">© 2023 <a href="/" class="hover:underline">ISIKEF</a>. Tous droits réservés.
-        </span>
-        <div class="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
-            <a href="https://www.facebook.com/profile.php?id=100057592473413" class="text-gray-500 hover:text-gray-900 ">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
-                <span class="sr-only">Facebook page</span>
-            </a>
-        </div>
-    </div>
-  </div>
-</footer>
+<?php include "../component/footer.php" ?>
 <script src="../../js/verify.js"></script>
 <script src="../../js/app.js"></script>
 </body>

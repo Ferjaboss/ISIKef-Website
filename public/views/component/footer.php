@@ -7,23 +7,19 @@
                   Tél.: (216) 78 201 056 - Fax : (216) 78 200 237
                   </div>
         </div>
-        <div class="grid grid-cols-2 sm:gap-1 sm:grid-cols-4 text-center">
-
-            <div class="w-24">
-                <a href="" class="mb-4 text-sm font-semibold text-gray-900">FAQ</a>
-            </div>
-            <div class="w-24">
-              <a href="" class="mb-4 text-sm font-semibold text-gray-900">Liens Utiles</a>
+        <div class="grid grid-cols-3 sm:gap-1 sm:grid-cols-3 text-center">
+            <div class="w-26">
+              <a href="http://localhost/isik/public/views/footer/liens.php" class="mb-4 text-sm font-semibold text-gray-900">Liens Utiles</a>
           </div>
-          <div class="w-24">
-              <a href="http://localhost/isik/public\views\footer\acces_info.php" class="mb-4 text-sm font-semibold text-gray-900">Accés a l'information</a>
+          <div class="w-26">
+              <a href="http://localhost/isik/public/views/footer/acces_info.php" class="mb-4 text-sm font-semibold text-gray-900">Accés a l'information</a>
           </div>
-          <div class="w-24">
-              <a href="./public/views/contact.php" class="mb-4 text-sm font-semibold text-gray-900">Nous Contacter</a>
+          <div class="w-26">
+              <a href="http://localhost/isik/public/views/contact.php" class="mb-4 text-sm font-semibold text-gray-900">Nous Contacter</a>
           </div>
         </div>
     </div>
-    <hr class="my-6 border-gray-200 sm:mx-auto  lg:my-8" />
+    <hr class="my-4 border-gray-200 sm:mx-auto  lg:my-3" />
     <div class="sm:flex sm:items-center sm:justify-between">
         <div class="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
             <a href="https://www.facebook.com/profile.php?id=100057592473413" class="text-gray-500 hover:text-gray-900 ">
